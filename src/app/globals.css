@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  --color-blush-pink: #F4C8D9;
+  --color-soft-pink: #FBE8EF;
+  --color-rose: #C56F91;
+  --color-rose-deep: #A95476;
+  --color-lavender: #DCD4F4;
+  --color-pale-lavender: #F0EDFB;
+  --color-cream: #FFFAF4;
+  --color-soft-mint: #E4F1EA;
+  --color-mint-ink: #3E6B56;
+  --color-ink: #514657;
+  --color-ink-muted: #7C6F83;
+  --color-border-soft: #EEDCE5;
+
+  --font-sans: "Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+}
+
+@layer base {
+  html,
+  body {
+    background-color: #FFFAF4;
+    color: #514657;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  *:focus-visible {
+    outline: 2px solid #C56F91;
+    outline-offset: 2px;
+  }
+}
+
+@keyframes floatPetal {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.75;
+  }
+  85% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(105vh) translateX(35px) rotate(240deg);
+    opacity: 0;
+  }
+}
+
+@keyframes gentleBob {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes softPulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+.animate-petal {
+  animation: floatPetal var(--petal-duration, 10s) linear infinite;
+}
+
+.animate-gentle-bob {
+  animation: gentleBob 4.2s ease-in-out infinite;
+}
+
+.animate-soft-pulse {
+  animation: softPulse 3s ease-in-out infinite;
+}
+
+.animations-paused .animate-petal,
+.animations-paused .animate-gentle-bob,
+.animations-paused .animate-soft-pulse {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-petal,
+  .animate-gentle-bob,
+  .animate-soft-pulse {
+    animation: none !important;
+  }
+}
